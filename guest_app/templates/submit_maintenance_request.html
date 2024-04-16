@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Submit Maintenance Request{% endblock %}
+
+{% block content %}
+    <h1>Submit Maintenance Request for {{ hotel.name }}</h1>
+    <form method="post" action="{% url 'submit_maintenance_request' hotel.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="hotel" value="{{ hotel.id }}">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

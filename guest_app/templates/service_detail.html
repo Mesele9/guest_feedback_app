@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ service.service_name }}</h2>
+  <p>{{ service.description }}</p>
+
+  <h3>Feedback</h3>
+  <ul>
+    {% for feedback in service.feedback_set.all %}
+      <li>Rating: {{ feedback.rating }} - Comment: {{ feedback.comment }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

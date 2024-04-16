@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Dashboard</h1>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h2>Feedbacks ({{ feedbacks_count }})</h2>
+                {% if feedbacks %}
+                    <ul>
+                        {% for feedback in feedbacks %}
+                            <li><a href="{% url 'feedback_detail' feedback.id %}">{{ feedback.feedback_text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No feedbacks found.</p>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <h2>Complaints ({{ complaints_count }})</h2>
+                {% if complaints %}
+                    <ul>
+                        {% for complaint in complaints %}
+                            <li><a href="{% url 'complaint_detail' complaint.id %}">{{ complaint.subject }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No complaints found.</p>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <h2>Maintenance Requests ({{ maintenance_requests_count }})</h2>
+                {% if maintenance_requests %}
+                    <ul>
+                        {% for request in maintenance_requests %}
+                            <li><a href="{% url 'maintenance_request_detail' request.id %}">{{ request.description }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No maintenance requests found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Hotel Information
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to Our Hotel</h1>
+        <div class="row">
+            {% for hotel in hotels %}
+                <div class="col-md-6 hotel-info">
+                    <h2>{{ hotel.name }}</h2>
+                    <p><strong>Address:</strong> {{ hotel.address }}</p>
+                    <p><strong>Phone:</strong> {{ hotel.phone }}</p>
+                    <p><strong>Email:</strong> {{ hotel.email }}</p>
+                    <p><strong>Website:</strong> <a href="{{ hotel.website }}" target="_blank">{{ hotel.website }}</a></p>
+                    <p><strong>Description:</strong> {{ hotel.description }}</p>
+                    <hr>
+                    <h3>Services</h3>
+                    <ul>
+                        <li>Room Details</li>
+                        <li>Prices</li>
+                        <li>Other Services</li>
+                    </ul>
+                    <hr>
+                    <a href="{% url 'submit_feedback' hotel.id %}" class="btn btn-primary">Submit Feedback</a>
+                    <a href="{% url 'submit_complaint' hotel.id %}" class="btn btn-danger">File Complaint</a>
+                    <a href="{% url 'submit_maintenance_request' hotel.id %}" class="btn btn-warning">Request Maintenance</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
